@@ -1,24 +1,27 @@
 # Manolo Recio | Portfolio Interactivo 🚀
-### Senior Visual & Experience Designer | Creative AI Developer | Scenography Developer
 
-Bienvenido a mi portfolio interactivo profesional. Este proyecto es una Single Page Application (SPA) moderna diseñada para mostrar más de 25 años de experiencia internacional en diseño, escenografía y tecnología creativa de vanguardia.
+**Senior Visual & Experience Designer | Creative AI Developer | Scenography Developer**
 
-Welcome to my professional interactive portfolio. This project is a modern Single Page Application (SPA) designed to showcase over 25 years of international experience in design, scenography, and cutting-edge creative technology.
+Bienvenido a mi portfolio interactivo profesional. Este proyecto es una Single Page Application (SPA) de alto rendimiento diseñada para mostrar más de 25 años de experiencia internacional.
 
-🔗 **Sitio Web / Live Site:** [https://manolorecio.github.io/Manolo-Recio-Portfolio/](https://manolorecio.github.io/Manolo-Recio-Portfolio/)
+Welcome to my professional interactive portfolio. This project is a high-performance Single Page Application (SPA) designed to showcase over 25 years of international experience.
+
+🔗 **[Live Site / Sitio Web](https://manolorecio.github.io/Manolo-Recio-Portfolio/)**
 
 ---
 
 ## 🛠 Tecnologías e Innovación | Tech Stack & Innovation
 
-| Español | English |
-| :--- | :--- |
-| Este portfolio utiliza tecnologías de última generación para garantizar rendimiento y una experiencia de usuario premium: | This portfolio is built with the latest technologies to ensure performance, accessibility, and a premium user experience: |
-| • **Framework:** [React 19](https://react.dev/) (Última versión) | • **Framework:** [React 19](https://react.dev/) (Latest version) |
-| • **Estilos:** [Tailwind CSS](https://tailwindcss.com/) para una interfaz moderna y responsiva. | • **Styling:** [Tailwind CSS](https://tailwindcss.com/) for a sleek, responsive, and modern UI. |
-| • **Inteligencia:** Integrado con **Google AI Studio** (Gemini API) para optimizar flujos creativos. | • **Intelligence:** Integrated with **Google AI Studio** (Gemini API) to enhance creative workflows. |
-| • **Iconos:** [Lucide React](https://lucide.dev/) para un lenguaje visual limpio. | • **Icons:** [Lucide React](https://lucide.dev/) for clean, consistent visual language. |
-| • **Despliegue:** Optimizado para **GitHub Pages** con analíticas integradas. | • **Deployment:** Optimized for **GitHub Pages** with integrated analytics. |
+Este portfolio utiliza una arquitectura personalizada para garantizar un rendimiento de élite y una experiencia de usuario premium:
+This portfolio uses a custom architecture to ensure elite performance and a premium user experience:
+
+| Tecnología / Tech | Descripción (ES) | Description (EN) |
+| :--- | :--- | :--- |
+| **React 19** | Última versión para una gestión de estado ultra-eficiente. | Latest version for ultra-efficient state management. |
+| **Tailwind CSS** | Estilos modernos con carga diferida (deferred) para FCP rápido. | Modern styling with deferred loading for fast FCP. |
+| **Google AI Studio** | Flujos creativos optimizados con Gemini 1.5 Pro & 2.0 Flash. | Creative workflows enhanced with Gemini 1.5 Pro & 2.0 Flash. |
+| **Performance Engine** | Exportador standalone con `modulepreload` y `fetchpriority`. | Standalone exporter with `modulepreload` and `fetchpriority`. |
+| **Analytics** | GA4 con eventos personalizados para tracking de interacción. | GA4 with custom events for interaction tracking. |
 
 ---
 
@@ -26,27 +29,41 @@ Welcome to my professional interactive portfolio. This project is a modern Singl
 
 | Español | English |
 | :--- | :--- |
-| **Filtrado Dinámico:** Sistema de alto rendimiento para más de 70 proyectos internacionales (Expos, Museos, Eventos). | **Dynamic Project Filtering:** High-performance filtering system for 70+ international projects (Expos, Museums, Events). |
-| **IA aplicada:** Uso de Google AI Studio para una presentación de contenido inteligente. | **AI-Powered Insights:** Leveraging Google AI Studio for smart content presentation. |
-| **Interfaz Bilingüe:** Optimizado para los mercados de habla hispana e inglesa. | **Bilingual Interface:** Fully optimized for both Spanish and English-speaking markets. |
-| **Diseño de Experiencia:** Enfoque en tipografía avanzada y efectos visuales sutiles. | **Experience-First Design:** Focus on typography and subtle visual effects. |
+| **Rendimiento Extremo:** Optimizado para Google PageSpeed (LCP < 2.5s). | **Elite Performance:** Optimized for Google PageSpeed (LCP < 2.5s). |
+| **Filtrado Dinámico:** Gestión fluida de más de 70 proyectos internacionales. | **Dynamic Filtering:** Smooth management of 70+ international projects. |
+| **Nativo Mobile-First:** Gestos táctiles inteligentes (swipe-to-close). | **Native Mobile-First:** Smart touch gestures (swipe-to-close). |
+| **IA aplicada:** Presentación de contenido inteligente y optimizado. | **AI-Powered:** Smart and optimized content presentation. |
+| **Interfaz Bilingüe:** Totalmente optimizado para ES/EN. | **Bilingual UI:** Fully optimized for ES/EN markets. |
 
 ---
 
 ## 🎨 Enfoque Profesional | Professional Focus
 
-| Español | English |
-| :--- | :--- |
-| **Museografía:** Diseñando historias para audiencias globales. | **Exhibition & Museography:** Designing stories for global audiences. |
-| **Diseño UI/UX:** Creando productos digitales intuitivos y accesibles. | **UI/UX Design:** Crafting intuitive and accessible digital products. |
-| **Escenografía:** Diseño y desarrollo de eventos y espacios a gran escala. | **Scenography:** Large-scale event design and development. |
-| **IA Creativa:** Explorando el futuro del diseño con tecnología generativa. | **Creative AI:** Exploring the future of design through generative technology. |
+| Área | Descripción (ES) | Description (EN) |
+| :--- | :--- | :--- |
+| **Museografía** | Diseñando historias para audiencias globales. | Designing stories for global audiences. |
+| **UI/UX Design** | Productos digitales intuitivos y accesibles. | Intuitive and accessible digital products. |
+| **Escenografía** | Eventos y espacios a gran escala. | Large-scale event design and development. |
+| **IA Creativa** | Explorando el futuro con tecnología generativa. | Exploring the future through generative tech. |
+
+---
+
+## 📈 Rendimiento Técnico | Technical Performance
+
+Este proyecto ha sido auditado con **Google Lighthouse**, alcanzando métricas de nivel superior:
+This project has been audited with **Google Lighthouse**, achieving top-tier metrics:
+
+* **Performance:** 90+ 🟢
+* **Accessibility:** 90+ 🟢
+* **Best Practices:** 100 🟢
+* **SEO:** 100 🟢
 
 ---
 
 ## 📬 Contacto | Connect with Me
-- **LinkedIn:** [linkedin.com/in/manolorecio/](https://www.linkedin.com/in/manolorecio/)
-- **Email:** manoloreciodesign@gmail.com
+
+* **LinkedIn:** [linkedin.com/in/manolorecio/](https://linkedin.com/in/manolorecio/)
+* **Email:** [manoloreciodesign@gmail.com](mailto:manoloreciodesign@gmail.com)
 
 ---
 *Created by Manolo Recio | © 2026*
