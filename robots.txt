@@ -1,5 +1,3 @@
 User-agent: *
 Allow: /
-
-# Indica a Google dónde está tu mapa del sitio
 Sitemap: https://manolorecio.github.io/Manolo-Recio-Portfolio/sitemap.xml
