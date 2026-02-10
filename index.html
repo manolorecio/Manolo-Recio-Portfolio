@@ -5,12 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Manolo Recio | Senior Graphic & Visual Designer & Scenography Developer & AI Creative Developer</title>
 
+    <link rel="preload" href="https://manolorecio.github.io/Manolo-Recio-Portfolio/LOGOVERDE.png" as="image" fetchpriority="high">
+
     <link rel="icon" type="image/png" href="https://manolorecio.github.io/Manolo-Recio-Portfolio/LOGOVERDE.png">
+    <link rel="apple-touch-icon" href="https://manolorecio.github.io/Manolo-Recio-Portfolio/LOGOVERDE.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&display=swap" rel="stylesheet">
 
-    <meta name="description" content="Portfolio interactivo bilingüe de Manolo Recio, experto en diseño gráfico, escenografía e Inteligencia Artificial...">
+    <meta name="description" content="Portfolio interactivo bilingüe de Manolo Recio, experto en diseño gráfico, escenografía e Inteligencia Artificial con más de 25 años de experiencia internacional.">
+    
+    <script>
+        window.loadGTM = function() {
+            if (window.analyticsLoaded) return;
+            
+            const isSandbox = window.location.hostname === 'localhost' || 
+                             window.location.protocol === 'file:';
+            
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = function(){ dataLayer.push(arguments); };
+            gtag('js', new Date());
+
+            if (isSandbox) {
+                console.log("🛠️ Modo Dev: Analytics simulado.");
+                window.analyticsLoaded = true;
+                return;
+            }
+
+            try {
+                // GTM Original
+                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','GTM-PZBMRC5T');
+
+                // GA4 Directo
+                const gaScript = document.createElement('script');
+                gaScript.async = true;
+                gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-473QLNNT2V";
+                document.head.appendChild(gaScript);
+                gtag('config', 'G-473QLNNT2V', { 'debug_mode': true });
+                window.analyticsLoaded = true;
+            } catch (e) {
+                console.error("❌ Error Analytics:", e);
+            }
+        };
+
+        // Carga diferida para no afectar al Lighthouse
+        window.addEventListener('load', () => {
+            if (localStorage.getItem('cookies-accepted') === 'true') {
+                setTimeout(window.loadGTM, 3500); // 3.5s de delay para priorizar el render
+            }
+        });
+    </script>
     
     <style>
         :root {
@@ -22,8 +71,9 @@
             color: #f8fafc;
             margin: 0;
             -webkit-font-smoothing: antialiased;
+            /* Evita saltos de layout al cargar fuentes */
+            text-rendering: optimizeLegibility;
         }
-        /* Tu efecto de ruido característico */
         body::before {
             content: '';
             position: fixed;
@@ -34,7 +84,6 @@
             background-image: var(--noise);
             z-index: 9999;
         }
-        /* Tus animaciones originales */
         .animate-in { animation: fadeIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
         
@@ -44,6 +93,8 @@
   <link rel="stylesheet" crossorigin href="/Manolo-Recio-Portfolio/assets/index-BGs_emTh.css">
 </head>
 <body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PZBMRC5T" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    
     <div id="root"></div>
 </body>
 </html>
