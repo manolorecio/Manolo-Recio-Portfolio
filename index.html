@@ -2,16 +2,46 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manolo Recio | Senior Graphic & Visual Designer</title>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Manolo Recio | Senior Graphic & Visual Designer & Scenography Developer & AI Creative Developer</title>
+
     <link rel="icon" type="image/png" href="https://manolorecio.github.io/Manolo-Recio-Portfolio/LOGOVERDE.png">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;800&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/Manolo-Recio-Portfolio/assets/index-3EMdhNrS.js"></script>
-  <link rel="stylesheet" crossorigin href="/Manolo-Recio-Portfolio/assets/index-DEOP-mns.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <meta name="description" content="Portfolio interactivo bilingüe de Manolo Recio, experto en diseño gráfico, escenografía e Inteligencia Artificial...">
+    
+    <style>
+        :root {
+            --noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.80' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #001119;
+            color: #f8fafc;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Tu efecto de ruido característico */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image: var(--noise);
+            z-index: 9999;
+        }
+        /* Tus animaciones originales */
+        .animate-in { animation: fadeIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        
+        #root { background-color: #02364d; min-height: 100vh; }
+    </style>
+  <script type="module" crossorigin src="/Manolo-Recio-Portfolio/assets/index-CSeMep_P.js"></script>
+  <link rel="stylesheet" crossorigin href="/Manolo-Recio-Portfolio/assets/index-BGs_emTh.css">
 </head>
 <body>
     <div id="root"></div>
