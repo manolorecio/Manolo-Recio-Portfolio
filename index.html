@@ -1,28 +1,66 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Manolo Recio | Senior Graphic & Visual Designer & Scenography Developer & AI Creative Developer</title>
 
-<link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/manolorecio/Manolo-Recio-Portfolio/refs/heads/main/favicon.ico">
-<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/manolorecio/Manolo-Recio-Portfolio/refs/heads/main/favicon.ico">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://esm.sh" crossorigin>
 
-    <meta name="description" content="Portfolio interactivo bilingüe de Manolo Recio, experto en diseño gráfico, escenografía e Inteligencia Artificial con más de 25 años de experiencia internacional.">
-    
+    <link rel="preconnect" href="https://drive.google.com">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+
+    <meta name="description"
+        content="Portfolio interactivo bilingüe de Manolo Recio, experto en diseño gráfico, escenografía e Inteligencia Artificial con más de 25 años de experiencia internacional. / 25+ years of international experience in visual design, scenography, and AI creative solutions.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://manolorecio.github.io/Manolo-Recio-Portfolio/">
+    <meta property="og:title"
+        content="Manolo Recio | Senior Graphic & Visual Designer & Scenography Developer & AI Creative Developer">
+    <meta property="og:description"
+        content="Diseño Visual, Escenografía e IA Creativa. / Visual Design, Scenography & AI Creative.">
+    <meta property="og:image"
+        content="https://manolorecio.github.io/Manolo-Recio-Portfolio/image-portfolio-linkedin.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org/",
+  "@type": "Person",
+  "name": "Manolo Recio",
+  "url": "https://manolorecio.github.io/Manolo-Recio-Portfolio/",
+  "sameAs": ["https://www.linkedin.com/in/manolorecio/"],
+  /* Imagen de alta resolución para previsualizaciones profesionales */
+  "image": "https://manolorecio.github.io/Manolo-Recio-Portfolio/image-portfolio-linkedin.png",
+  "jobTitle": "Senior Graphic & Visual Designer & Scenography Developer & AI Creative Developer",
+  "knowsAbout": [
+    "Graphic & Visual Design", 
+    "Scenography Development", 
+    "AI Creative Development", 
+    "Exhibition Design"
+  ]
+}
+    </script>
+
+    <link rel="icon" type="image/x-icon"
+        href="https://raw.githubusercontent.com/manolorecio/Manolo-Recio-Portfolio/refs/heads/main/favicon.ico">
+    <link rel="apple-touch-icon"
+        href="https://raw.githubusercontent.com/manolorecio/Manolo-Recio-Portfolio/refs/heads/main/favicon.ico">
+
     <script>
-        window.loadGTM = function() {
+        window.loadGTM = function () {
             if (window.analyticsLoaded) return;
-            
-            const isSandbox = window.location.hostname === 'localhost' || 
-                             window.location.protocol === 'file:';
-            
+            const isSandbox = window.location.origin.includes('googleusercontent.com') ||
+                window.location.hostname === 'localhost' ||
+                window.location.protocol === 'file:';
+
             window.dataLayer = window.dataLayer || [];
-            window.gtag = function(){ dataLayer.push(arguments); };
+            window.gtag = function () { dataLayer.push(arguments); };
             gtag('js', new Date());
 
             if (isSandbox) {
@@ -32,14 +70,15 @@
             }
 
             try {
-                // GTM Original
-                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                })(window,document,'script','dataLayer','GTM-PZBMRC5T');
+                (function (w, d, s, l, i) {
+                    w[l] = w[l] || []; w[l].push({
+                        'gtm.start':
+                            new Date().getTime(), event: 'gtm.js'
+                    }); var f = d.getElementsByTagName(s)[0],
+                        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+                })(window, document, 'script', 'dataLayer', 'GTM-PZBMRC5T');
 
-                // GA4 Directo
                 const gaScript = document.createElement('script');
                 gaScript.async = true;
                 gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-473QLNNT2V";
@@ -47,52 +86,132 @@
                 gtag('config', 'G-473QLNNT2V', { 'debug_mode': true });
                 window.analyticsLoaded = true;
             } catch (e) {
-                console.error("❌ Error Analytics:", e);
+                console.error("❌ Error:", e);
             }
         };
 
-        // Carga diferida para no afectar al Lighthouse
         window.addEventListener('load', () => {
             if (localStorage.getItem('cookies-accepted') === 'true') {
-                setTimeout(window.loadGTM, 3500); // 3.5s de delay para priorizar el render
+                setTimeout(window.loadGTM, 2500);
             }
         });
     </script>
-    
+
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <style>
         :root {
             --noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.80' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
+
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: #001119;
             color: #f8fafc;
+            overflow-x: hidden;
+            min-height: 100vh;
             margin: 0;
             -webkit-font-smoothing: antialiased;
-            /* Evita saltos de layout al cargar fuentes */
-            text-rendering: optimizeLegibility;
         }
+
         body::before {
             content: '';
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             opacity: 0.03;
             pointer-events: none;
             background-image: var(--noise);
             z-index: 9999;
         }
-        .animate-in { animation: fadeIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-        
-        #root { background-color: #02364d; min-height: 100vh; }
+
+        .animate-in {
+            animation: fadeIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(1.7);
+                opacity: 0;
+            }
+        }
+
+        .animate-pulse-ring {
+            animation: pulse-ring 5s infinite;
+        }
+
+        #root {
+            background-color: #02364d;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
     </style>
-  <script type="module" crossorigin src="/Manolo-Recio-Portfolio/assets/index-CSeMep_P.js"></script>
-  <link rel="stylesheet" crossorigin href="/Manolo-Recio-Portfolio/assets/index-BGs_emTh.css">
+
+
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "lucide-react": "https://esm.sh/lucide-react@0.460.0?external=react,react-dom",
+    "react-ga4": "https://esm.sh/react-ga4@2.1.0?external=react,react-dom",
+    "react-tooltip": "https://esm.sh/react-tooltip@5.28.0?external=react,react-dom",
+    "react-simple-maps": "https://esm.sh/react-simple-maps@3.0.0?external=react,react-dom",
+    "d3-geo": "https://esm.sh/d3-geo@7.1.1",
+    "topojson-client": "https://esm.sh/topojson-client@3.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "vite": "https://esm.sh/vite@^7.3.1",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.4",
+    "@tailwindcss/vite": "https://esm.sh/@tailwindcss/vite@^4.1.18"
+  }
+}
+</script>
+  <script type="module" crossorigin src="/Manolo-Recio-Portfolio/assets/main-G_TuHxgA.js"></script>
+  <link rel="stylesheet" crossorigin href="/Manolo-Recio-Portfolio/assets/main-BEeqf7A1.css">
 </head>
+
 <body>
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PZBMRC5T" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PZBMRC5T" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
     <div id="root"></div>
 </body>
+
 </html>
