@@ -554,7 +554,7 @@ image: 'https://www.allsportsmedia.es/wp-content/uploads/2020/09/experiencia-03c
 
 // --- CENTROS COMERCIALES · MALLS ---
 {
-id: 'islazul-2007',
+id: 'islazul',
 title: 'CC ISLAZUL|ISLAZUL MALL',
 date: '2007',
 location: 'Madrid, España|Madrid, Spain',
@@ -564,7 +564,7 @@ category: 'malls',
 image: 'https://www.l35.com/default/imagenes/2017/04/8050_es-islazul-5813.sw1440.sh810.ct1.jpg'
 },
 {
-id: 'mn4-2004',
+id: 'mn4',
 title: 'CC MN4|MN4 MALL',
 date: '2004',
 location: 'Alfafar, España|Alfafar, Spain',
