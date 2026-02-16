@@ -8,10 +8,12 @@
 
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.statically.io">
+    <link rel="dns-prefetch" href="https://cdn.statically.io">
 
+    <link rel="preload" href="https://manolorecio.github.io/Manolo-Recio-Portfolio/image-portfolio-linkedin.webp" as="image" type="image/webp" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
 
     <meta name="description" content="Portfolio interactivo bilingüe de Manolo Recio. Diseño gráfico, visual y escenográfico con más de 25 años de experiencia internacional.">
@@ -51,7 +53,8 @@
             (function (w, d, s, l, i) {
                 w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
                 var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-                j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+                var j = d.createElement(s); j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f.parentNode.firstChild);
             })(window, document, 'script', 'dataLayer', 'GTM-PZBMRC5T');
             window.analyticsLoaded = true;
         };
@@ -68,7 +71,6 @@
         body {
             font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: #02364d;
-            /* Cambia esto al color predominante de tu fondo */
             color: #f8fafc;
             margin: 0;
             min-height: 100vh;
@@ -94,57 +96,30 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
         @keyframes pulse-ring {
-            0% {
-                transform: scale(1);
-                opacity: 0.8;
-            }
-
-            50% {
-                opacity: 0.5;
-            }
-
-            100% {
-                transform: scale(1.7);
-                opacity: 0;
-            }
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { opacity: 0.5; }
+            100% { transform: scale(1.7); opacity: 0; }
         }
 
-        .animate-pulse-ring {
-            animation: pulse-ring 5s infinite;
-        }
+        .animate-pulse-ring { animation: pulse-ring 5s infinite; }
 
         #root {
             background-color: #02364d;
-            /* Asegura coincidencia total */
             min-height: 100vh;
             flex: 1 0 auto;
-            /* Permite que el root crezca y empuje el footer al final */
             display: flex;
             flex-direction: column;
         }
     </style>
-  <script type="module" crossorigin src="/Manolo-Recio-Portfolio/assets/main-BsBzlBti.js"></script>
+  <script type="module" crossorigin src="/Manolo-Recio-Portfolio/assets/main-D5n6CZDL.js"></script>
   <link rel="stylesheet" crossorigin href="/Manolo-Recio-Portfolio/assets/main-DVq9ajWf.css">
 </head>
 
