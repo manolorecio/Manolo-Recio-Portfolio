@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Manolo Recio | Senior Graphic & Visual Designer & Scenography Developer</title>
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.statically.io" crossorigin>
+
+<link rel="modulepreload" href="/assets/main-CQbHZ2b9-C3xgoAYJ.js">
+<link rel="preload" as="image" href="https://manolorecio.github.io/Manolo-Recio-Portfolio/image-portfolio-linkedin.webp" fetchpriority="high">
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+</noscript>
+
+<meta name="description" content="Portfolio interactivo bilingüe de Manolo Recio. Diseño gráfico, visual y escenográfico con más de 25 años de experiencia internacional.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://manolorecio.github.io/Manolo-Recio-Portfolio/">
+<meta property="og:title" content="Manolo Recio | Senior Graphic & Visual Designer & Scenography Developer">
+<meta property="og:image" content="https://manolorecio.github.io/Manolo-Recio-Portfolio/image-portfolio-linkedin.webp">
+<meta name="twitter:card" content="summary_large_image">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Person",
+      "name": "Manolo Recio",
+      "url": "https://manolorecio.github.io/Manolo-Recio-Portfolio/",
+      "sameAs": ["https://www.linkedin.com/in/manolorecio/"],
+      "image": "https://manolorecio.github.io/Manolo-Recio-Portfolio/image-portfolio-linkedin.webp",
+      "jobTitle": "Senior Graphic & Visual Designer & Scenography Developer & AI Creative Developer",
+      "knowsAbout": [
+        "Graphic & Visual Design", 
+        "Scenography Development", 
+        "AI Creative Development", 
+        "Exhibition Design"
+      ]
+    }
+    </script>
+
+    <link rel="icon" type="image/x-icon" href="/assets/favicon-BAh07V9y.ico">
+    <link rel="apple-touch-icon" href="/assets/favicon-BAh07V9y.ico">
+
+    <script>
+        window.loadGTM = function () {
+            if (window.analyticsLoaded) return;
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = function () { dataLayer.push(arguments); };
+            gtag('js', new Date());
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+                var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-PZBMRC5T');
+            window.analyticsLoaded = true;
+        };
+        window.addEventListener('load', () => {
+            if (localStorage.getItem('cookies-accepted') === 'true') setTimeout(window.loadGTM, 2500);
+        });
+    </script>
+
+    <style>
+        :root {
+            --noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.80' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #02364d;
+            /* Cambia esto al color predominante de tu fondo */
+            color: #f8fafc;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image: var(--noise);
+            z-index: 9999;
+        }
+
+        .animate-in {
+            animation: fadeIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(1.7);
+                opacity: 0;
+            }
+        }
+
+        .animate-pulse-ring {
+            animation: pulse-ring 5s infinite;
+        }
+
+        #root {
+            background-color: #02364d;
+            /* Asegura coincidencia total */
+            min-height: 100vh;
+            flex: 1 0 auto;
+            /* Permite que el root crezca y empuje el footer al final */
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+  <script type="module" crossorigin src="/assets/index-B69o2fMh.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-B0lZ_12t.css">
+</head>
+
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PZBMRC5T" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <div id="root"></div>
+</body>
+
+</html>
