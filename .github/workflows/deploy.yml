@@ -4,7 +4,9 @@ on:
     branches: [ main ]
 
 permissions:
-  contents: write    # Permite escribir y limpiar archivos en la rama de despliegue
+  contents: write
+  pages: write      # Necesario para interactuar con Pages
+  id-token: write   # Necesario para la autenticación moderna
 
 jobs:
   build-and-deploy:
@@ -28,4 +30,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist
-          clean: true  # Clave para eliminar basura técnica y archivos obsoletos
+          branch: gh-pages # Asegúrate de que en Settings > Pages apunte a esta rama
+          clean: true
