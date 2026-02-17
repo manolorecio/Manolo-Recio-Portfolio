@@ -1,6 +1,44 @@
 import { Project, Award, Experience, Skill, ProjectLink } from './types';
 
-export const PROJECTS: Project[] = [
+// 1. Configuración de Origen (Sin barra al final de @main)
+const GITHUB_USER = 'manolorecio';
+const GITHUB_REPO = 'Manolo-Recio-Portfolio';
+const BRANCH = '@main'; 
+const CDN_BASE = `https://cdn.statically.io/gh/${GITHUB_USER}/${GITHUB_REPO}${BRANCH}`;
+
+
+  // 2. Función de Transformación (Versión "Cuchillo" para GitHub Pages)
+export function toCdn(url: string, width?: number): string {
+  if (!url) return url;
+  
+  // A. Guardián: Si ya es URL de Statically, gestionamos solo parámetros
+  if (url.includes('@main')) {
+    const baseUrl = url.split('?')[0];
+    return width ? `${baseUrl}?width=${width}&format=webp` : url;
+  }
+
+  // B. Limpieza de URLs absolutas (GitHub Raw o Statically viejo)
+  const pattern = /(https:\/\/raw\.githubusercontent\.com\/manolorecio\/Manolo-Recio-Portfolio\/[a-z0-9._-]+\/|https:\/\/cdn\.statically\.io\/gh\/manolorecio\/Manolo-Recio-Portfolio\/main\/)/gi;
+  let path = url.replace(pattern, '');
+
+  // C. ELIMINACIÓN DE RUTA FANTASMA: "Tirar a la basura /main/heads/"
+  // Buscamos dónde empieza "images/" y nos quedamos SOLO con eso.
+  // Esto elimina automáticamente cualquier prefijo como "/main/heads/main/"
+  const folderKey = 'images/';
+  if (path.includes(folderKey)) {
+    path = path.substring(path.indexOf(folderKey));
+  }
+
+  // D. Normalización: Quitamos barras iniciales sobrantes
+  const cleanPath = path.replace(/^\/+/, '');
+
+  // E. Construcción Final sobre el CDN_BASE (que ya incluye @main)
+  const finalUrl = `${CDN_BASE}/${cleanPath}`;
+  
+  return width ? `${finalUrl}?width=${width}&format=webp` : finalUrl;
+}
+
+const PROJECTS_ORIGINAL: Project[] = [
 // --- PABELLONES EXPOS · EXPO PAVILIONS ---
 {
 id: 'uae-astana-2017',
@@ -10,7 +48,12 @@ location: 'Expo 2017 Astaná. Kazajstán|Expo 2017 Astana. Kazakhstan',
 description: 'Desarrollo escenográfico.|Scenographic development.',
 achievements: ['Exhibitor Magazine · Mención de Honor en la categoría “Editor\'s Choice”|Exhibitor Magazine · Honorable Mention in the “Editor\'s Choice” category'],
 category: 'pavilions',
-image: 'https://raw.githubusercontent.com/manolorecio/Manolo-Recio-Portfolio/main/images/pabellon-uae-expo-astana-2017.webp',
+image: 'images/pabellon-uae-expo-astana-2017.webp',
+imageSet: [
+  'images/pabellon-uae-expo-astana-2017-300.webp 300w',
+  'images/pabellon-uae-expo-astana-2017-600.webp 600w',
+  'images/pabellon-uae-expo-astana-2017.webp 1000w'
+],
 links: []
 },
 {
@@ -21,7 +64,12 @@ location: 'Expo Yeosu 2012. Corea del sur|Expo Yeosu 2012. South Korea',
 description: 'Diseño y desarrollo escenográfico.|Scenographic design and development.',
 achievements: ['BIE · Medalla de plata al mejor pabellón | BIE · Silver Medal for Best Pavilion','Exhibitor Magazine · Premio del público | Exhibitor Magazine · Audience Award'],
 category: 'pavilions',
-image: 'https://raw.githubusercontent.com/manolorecio/Manolo-Recio-Portfolio/main/images/pabellon-de-rusia-yeosu-2012.webp',
+image: 'images/pabellon-de-rusia-yeosu-2012.webp',
+imageSet: [
+  'images/pabellon-de-rusia-yeosu-2012-300.webp 300w',
+  'images/pabellon-de-rusia-yeosu-2012-600.webp 600w',
+  'images/pabellon-de-rusia-yeosu-2012.webp 1000w'
+],
 links: []
 },
 {
@@ -32,7 +80,12 @@ location: 'Expo Zaragoza 2008. España|Expo Zaragoza 2008. Spain',
 description: 'Diseño y desarrollo escenográfico.|Scenographic design and development.',
 achievements: ['Bureau International des Expositions · Medalla de oro al mejor pabellón|Bureau International des Expositions · Gold Medal for Best Pavilion'],
 category: 'pavilions',
-image: 'https://raw.githubusercontent.com/manolorecio/Manolo-Recio-Portfolio/main/images/pabellon-de-oman-zaragoza-2008.webp',
+image: 'images/pabellon-de-oman-zaragoza-2008.webp',
+imageSet: [
+  'images/pabellon-de-oman-zaragoza-2008-300.webp 300w',
+  'images/pabellon-de-oman-zaragoza-2008-600.webp 600w',
+  'images/pabellon-de-oman-zaragoza-2008.webp 1000w'
+],
 links: []
 },
 {
@@ -43,18 +96,28 @@ location: 'Expo Zaragoza 2008. España|Expo Zaragoza 2008. Spain',
 description: 'Diseño y desarrollo escenográfico.|Scenographic design and development.',
 achievements: ['Bureau International des Expositions · Medalla de plata al mejor pabellón|Bureau International des Expositions · Silver medal for the best pavilion'],
 category: 'pavilions',
-image: 'https://raw.githubusercontent.com/manolorecio/Manolo-Recio-Portfolio/main/images/pabellon-de-rusia-zaragoza-2008.webp',
+image: 'images/pabellon-de-rusia-zaragoza-2008.webp',
+imageSet: [
+  'images/pabellon-de-rusia-zaragoza-2008-300.webp 300w',
+  'images/pabellon-de-rusia-zaragoza-2008-600.webp 600w',
+  'images/pabellon-de-rusia-zaragoza-2008.webp 1000w'
+],
 links: []
 },
 {
-id: 'Türkiye-aichi-2005',
+id: 'türkiye-aichi-2005',
 title: 'PABELLÓN DE TURQUÍA|TÜRKIYE PAVILION',
 date: '2005',
 location: 'Expo Aichi 2005. Japón|Expo Aichi 2005. Japan',
 description: 'Diseño y desarrollo escenográfico.|Scenographic design and development.',
 achievements: ['BIE · Medalla de oro al mejor pabellón|BIE · Gold medal for the best pavilion', 'EXPO AICHI 2005 · “Nature\'s Wisdom Award” Medalla de oro|EXPO AICHI 2005 · “Nature\'s Wisdom Award” Gold medal'],
 category: 'pavilions',
-image: 'https://raw.githubusercontent.com/manolorecio/Manolo-Recio-Portfolio/main/images/pabellon-de-turquia-aichi-2005.webp',
+image: 'images/pabellon-de-turquia-aichi-2005.webp',
+imageSet: [
+  'images/pabellon-de-turquia-aichi-2005-300.webp 300w',
+  'images/pabellon-de-turquia-aichi-2005-600.webp 600w',
+  'images/pabellon-de-turquia-aichi-2005.webp 1000w'
+],
 links: []
 },
 
@@ -68,7 +131,7 @@ location: "Madrid, España|Madrid, Spain",
 description: "Desarrollo y Producción UI/UX, Desarrollo y Producción gráfica y Gestión CMS.|UI/UX Development and Production, Graphic Production and CMS Management.",
 achievements: [],
 category: "museums",
-image: "https://raw.githubusercontent.com/manolorecio/Manolo-Recio-Portfolio/main/images/real-madrid-museum.webp",
+image: "images/real-madrid-museum.webp",
 links: [
 {
 label: "Un paseo por el Tour Bernabéu|A stroll through the Bernabéu Tour",
@@ -85,7 +148,7 @@ location: 'Abu Dhabi, EAU|Abu Dhabi, UAE',
 description: 'Desarrollo UI/UX y Producción gráfica.|UI/UX Development and Graphic Production.',
 achievements: [],
 category: 'museums',
-image: 'https://raw.githubusercontent.com/manolorecio/Manolo-Recio-Portfolio/main/images/department-of-finance-uae-logo.webp',
+image: 'images/department-of-finance-uae-logo.webp',
 links: []
 },
 {
@@ -96,7 +159,7 @@ location: "Doha, Qatar",
 description: "Diseño y Desarrollo gráfico, Producción y Artes finales.|Graphic Design and Development, Production and Final Artworks.",
 achievements: [],
 category: "museums",
-image: "https://raw.githubusercontent.com/manolorecio/Manolo-Recio-Portfolio/main/images/3-2-1-qosm.webp",
+image: "images/3-2-1-qosm.webp",
 links: [
 {
 label: "Ficha del Proyecto | Project Sheet",
@@ -118,7 +181,7 @@ location: "Dubái, EAU|Dubai, UAE",
 description: "UI/UX y Producción visual.|UI/UX and Visual Production.",
 achievements: [],
 category: "museums",
-image: "https://raw.githubusercontent.com/manolorecio/Manolo-Recio-Portfolio/main/images/al-shindagha-museum-poetry-house.webp",
+image: "images/al-shindagha-museum-poetry-house.webp",
 links: [
 {
 label: "Poetry House - Al Shindagha Museum Dubai|",
@@ -135,7 +198,7 @@ location: 'Dubái, EAU|Dubai, UAE',
 description: 'Desarrollo de diseño y producción gráfica.|Design development and graphic production.',
 achievements: [],
 category: 'museums',
-image: 'https://raw.githubusercontent.com/manolorecio/Manolo-Recio-Portfolio/main/images/shindagha-museum-patio.webp'
+image: 'images/shindagha-museum-patio.webp'
 },
 {
 id: "european-history-2017",
@@ -147,7 +210,7 @@ achievements: [
 "Mención especial. 2019 European Museum of the Year Awards (EMYA)|Special mention. European Museum of the Year Awards 2019 (EMYA)"
 ],
 category: "museums",
-image: "https://raw.githubusercontent.com/manolorecio/Manolo-Recio-Portfolio/main/images/the-house-of-european-history.webp",
+image: "images/the-house-of-european-history.webp",
 links: [
 {
 label: "House of European History|",
@@ -164,7 +227,7 @@ location: 'Abeokuta, Nigeria',
 description: 'Desarrollo escenográfico.|Scenographic development.',
 achievements: [],
 category: 'museums',
-image: 'https://raw.githubusercontent.com/manolorecio/Manolo-Recio-Portfolio/main/images/presidential-library-olusegun-obasanjo-nigeria.webp'
+image: 'images/presidential-library-olusegun-obasanjo-nigeria.webp'
 },
 {
 id: "oman-national-2016",
@@ -174,7 +237,7 @@ location: "Mascate, Omán|Muscat, Oman",
 description: "Producción gráfica, Desarrollo de diseño y Producción multimedia.|Graphic production, design development and multimedia production.",
 achievements: [],
 category: "museums",
-image: "https://raw.githubusercontent.com/manolorecio/Manolo-Recio-Portfolio/main/images/museo-nacional-de-oman.webp",
+image: "images/museo-nacional-de-oman.webp",
 links: [
 {
 label: "Descubre el Museo Nacional de Omán|Discover the National Museum of Oman",
@@ -196,7 +259,7 @@ location: "Kuwait City, Kuwait",
 description: "Desarrollo de diseño.|Design development.",
 achievements: [],
 category: "museums",
-image: "https://raw.githubusercontent.com/manolorecio/Manolo-Recio-Portfolio/main/images/memorial-museum.webp",
+image: "images/memorial-museum.webp",
 links: [
 {
 label: "Un paseo por el Museo|A walk through the Museum",
@@ -213,7 +276,7 @@ location: "Kuwait City, Kuwait",
 description: "Desarrollo de diseño.|Design development.",
 achievements: [],
 category: "museums",
-image: "https://raw.githubusercontent.com/manolorecio/Manolo-Recio-Portfolio/main/images/museo-habitat.webp",
+image: "images/museo-habitat.webp",
 links: [
 {
 label: "Un paseo por el Museo|A walk through the Museum",
@@ -232,7 +295,7 @@ achievements: [
 "European Museum Forum · Kenneth Hudson Award 2017"
 ],
 category: "museums",
-image: "https://raw.githubusercontent.com/manolorecio/Manolo-Recio-Portfolio/main/images/boris-yeltsin-presidential-library.webp",
+image: "images/boris-yeltsin-presidential-library.webp",
 links: [
 {
 label: "Échale un vistazo al Yeltsin Center|Take a look at the Yeltsin Center",
@@ -251,7 +314,7 @@ achievements: [
 "1st prize international tender competition"
 ],
 category: "museums",
-image: "https://raw.githubusercontent.com/manolorecio/Manolo-Recio-Portfolio/main/images/doha-heritage-houses.webp",
+image: "images/doha-heritage-houses.webp",
 links: [
 {
 label: "Visita rápida|Quick tour",
@@ -273,7 +336,7 @@ achievements: [
 "New York Festivals 2015 · Silver"
 ],
 category: "museums",
-image: "https://raw.githubusercontent.com/manolorecio/Manolo-Recio-Portfolio/main/images/wuxi.webp",
+image: "images/wuxi.webp",
 links: [
 {
 label: "Echa un vistazo|Take a look",
@@ -290,7 +353,7 @@ location: "Sevilla, España|Seville, Spain",
 description: "Desarrollo escenográfico.|Scenographic development.",
 achievements: [],
 category: "museums",
-image: "https://raw.githubusercontent.com/manolorecio/Manolo-Recio-Portfolio/main/images/pabellon-de-la-navegacion.webp",
+image: "images/pabellon-de-la-navegacion.webp",
 links: [
 {
 label: "Echa un vistazo|Take a look",
@@ -307,7 +370,7 @@ location: "Bucarest, Rumania|Bucharest, Romania",
 description: "Desarrollo escenográfico.|Scenographic development.",
 achievements: [],
 category: "museums",
-image: "https://raw.githubusercontent.com/manolorecio/Manolo-Recio-Portfolio/main/images/grigore-antipa-national-museum-of-natural-history.webp",
+image: "images/grigore-antipa-national-museum-of-natural-history.webp",
 links: [
 {
 label: "Un paseo por el Museo|A walk through the Museum",
@@ -326,7 +389,7 @@ achievements: [
 "European Museum Forum · Mejor museo del año en Europa 2004|European Museum Forum · Best Museum of the Year in Europe 2004"
 ],
 category: "museums",
-image: "https://raw.githubusercontent.com/manolorecio/Manolo-Recio-Portfolio/main/images/marq.webp",
+image: "images/marq.webp",
 links: [
 {
 label: "Un paseo por el Museo|A walk through the Museum",
@@ -343,7 +406,7 @@ location: 'Madrid, España|Madrid, Spain',
 description: 'Desarrollo de diseño y Producción multimedia.|Design development and multimedia production.',
 achievements: [],
 category: 'museums',
-image: 'https://cdn.myportfolio.com/ad44eb0dd5bdc425c6479752da553a41/cc26af1c-c8de-4534-95dd-330bb159b86d_rw_1920.jpg?h=bfd33f494df55596836c5f796535d47e'
+image: 'images/museo-santalucia.webp'
 },
 
 // --- EXPOSICIONES Y CENTROS · EXHIBITIONS ---
@@ -355,7 +418,7 @@ location: 'Riyadh, Arabia Saudí|Riyadh, Saudi Arabia',
 description: 'Desarrollo UI/UX y Producción gráfica.|UI/UX Development and Graphic Production.',
 achievements: [],
 category: 'exhibitions',
-image: 'https://cssmiddleeast.com/wp-content/uploads/2023/06/logo-sabic.png'
+image: 'images/logo-sabic.webp'
 },
 {
 id: "vuelta-mundo-2019",
@@ -365,7 +428,7 @@ location: "Sevilla, España|Seville, Spain",
 description: "Diseño y Desarrollo gráfico, expositivo y escenográfico.|Graphic, exhibition and scenographic design and development.",
 achievements: [],
 category: "exhibitions",
-image: "https://drive.google.com/thumbnail?id=1Zk9DB7hZvH8tas2GPVlg99mjphVOORwe&sz=w1000",
+image: "images/espacio-vuelta-mundo.webp",
 links: [
 {
 label: "Un paseo por la exposición|A walk through the exhibition",
@@ -382,7 +445,7 @@ location: 'Museum of Islamic Art. Doha, Qatar',
 description: 'Desarrollo de diseño.|Design development.',
 achievements: [],
 category: 'exhibitions',
-image: 'https://www.bglaudiovisual.com//img/articles/exhibition-the-hunt-princely-pursuits-in-islamic-lands-islamic-art-museum-doha-1550639643-16236805972.jpg'
+image: 'images/exhibition-the-hunt.webp'
 },
 {
 id: 'hajj-2014',
@@ -392,7 +455,7 @@ location: 'Museum of Islamic Art. Doha, Qatar',
 description: 'Desarrollo de diseño.|Design development.',
 achievements: [],
 category: 'exhibitions',
-image: 'https://www.bglaudiovisual.com//img/articles/exposicion-hajj-the-journey-through-art-museo-de-arte-islamico-doha-813742585-16279261503.jpg'
+image: 'images/exposicion-hajj.webp'
 },
 {
 id: 'zurbaran-2013',
@@ -402,7 +465,7 @@ location: 'Espacio Santa Clara. Sevilla, España|Espacio Santa Clara. Seville, S
 description: 'Desarrollo de diseño.|Design development.',
 achievements: [],
 category: 'exhibitions',
-image: 'https://vancram.com/wp-content/uploads/2013/05/Santas-de-Zurbaran.-Devocion-y-persuasion-04-955x0-c-default.jpg'
+image: 'images/santas-de-zurbaran.webp'
 },
 {
 id: 'travel-art-2013',
@@ -412,7 +475,7 @@ location: 'Al Riwaq. Doha, Qatar',
 description: 'Desarrollo de diseño.|Design development.',
 achievements: [],
 category: 'exhibitions',
-image: 'https://www.bglaudiovisual.com//img/articles/the-art-of-travel-exhibition-al-riwaq-hall-mia-doha-qatar-1405725494-20048915926.jpg'
+image: 'images/the-art-of-travel-exhibition.webp'
 },
 {
 id: 'byzance-2010',
@@ -422,7 +485,7 @@ location: 'Grand Palais. París, Francia|Grand Palais. Paris, France',
 description: 'Desarrollo de diseño.|Design development.',
 achievements: [],
 category: 'exhibitions',
-image: 'https://images.apirocket.io/images/c7ur1zqs/Projects/oZ--xHk_sV/2009-10-EXHIBITION-DE-BYZANCE-A-ISTANBUL-UN-PORT-POUR-DEUX-CONTINENTS.-PARIS.-FRANCE-03.jpg?format=auto'
+image: 'images/de-byzance-a-istambul.webp'
 },
 {
 id: 'vina-mayor-2008',
@@ -432,7 +495,7 @@ location: 'Valladolid, España|Valladolid, Spain',
 description: 'Desarrollo de diseño.|Design development.',
 achievements: [],
 category: 'exhibitions',
-image: 'https://photo620x400.mnstatic.com/d6ef3048447dc1c655c8722da59ac44d/bodegas-y-vinedos-vina-mayor.jpg'
+image: 'images/bodegas-y-vinedos-vina-mayor.webp'
 },
 {
 id: "san-juan-2007",
@@ -442,7 +505,7 @@ location: "Huesca, España|Huesca, Spain",
 description: "Desarrollo de diseño.|Design development.",
 achievements: [],
 category: "exhibitions",
-image: "https://www.monasteriosanjuan.com/wp-content/uploads/2022/01/CI-Monasterio.jpg",
+image: "images/san-juan-de-la-pena.webp",
 links: [
 {
 label: "Echa un vistazo|Take a look",
@@ -459,7 +522,7 @@ location: 'La Rioja, España|La Rioja, Spain',
 description: 'Desarrollo escenográfico.|Scenographic development.',
 achievements: [],
 category: 'exhibitions',
-image: 'https://www.ecoparquedelarioja.es/images/centro-visitantes/img_act7_grande.jpg'
+image: 'images/ecoparque-la-rioja.webp'
 },
 {
 id: "bodega-finca-nevados",
@@ -469,7 +532,7 @@ location: "Socuéllamos, España|Socuellamos, Spain",
 description: "Desarrollo de proyecto|Project development",
 achievements: [],
 category: "exhibitions",
-image: "https://drive.google.com/thumbnail?id=1R6dfUhYk43qbWoFyNVrXzwbrkCqpCrCk&sz=w1000"
+image: "images/los-nevados.webp"
 },
 
 
@@ -482,7 +545,7 @@ location: 'Madrid, España|Madrid, Spain',
 description: 'Producción gráfica.|Graphic production.',
 achievements: [],
 category: 'shows',
-image: 'https://www.digitalavmagazine.com/wp-content/uploads/2019/12/Museo-del-Prado-mapping-Acciona-APD-1.jpg'
+image: 'images/museo-del-prado-mapping.webp'
 },
 {
 id: 'liria-2019',
@@ -492,7 +555,7 @@ location: 'Madrid, España|Madrid, Spain',
 description: 'Desarrollo de proyecto.|Project development.',
 achievements: [],
 category: 'shows',
-image: 'https://www.sinmapa.net/wp-content/uploads/2021/03/visitar-el-palacio-de-liria-madrid.jpg'
+image: 'images/palacio-de-liria.webp'
 },
 {
 id: 'navidad-sevilla-2010',
@@ -502,7 +565,7 @@ location: 'Sevilla, España|Seville, Spain',
 description: 'Desarrollo de diseño.|Design development.',
 achievements: ['EuBea 2016 · Silver', 'EuBea 2013 · Silver', 'Eventoplus 2013 · Silver'],
 category: 'shows',
-image: 'https://sevillasecreta.co/wp-content/uploads/2016/11/dragon.jpg'
+image: 'images/dragon.webp'
 },
 {
 id: 'marca-espana-2015',
@@ -512,7 +575,7 @@ location: 'España · Alemania|Spain · Germany',
 description: 'Desarrollo de diseño.|Design development.',
 achievements: [],
 category: 'shows',
-image: 'https://periodistas-es.com/wp-content/uploads/marca-espa%C3%B1a.png'
+image: 'images/marca-espana.webp'
 },
 {
 id: "alma-cordoba-2010",
@@ -522,7 +585,7 @@ location: "Córdoba, España|Cordoba, Spain",
 description: "Desarrollo de proyecto.|Project development.",
 achievements: [],
 category: "shows",
-image: "https://static.grupojoly.com/clip/09e6db20-00f2-4606-9bfd-5da911e3e4ce_source-aspect-ratio_1600w_0.jpg",
+image: "images/mezquita-de-cordoba.webp",
 links: [
 {
 label: "Visita la Mezquita|Visit the Mosque",
@@ -539,7 +602,7 @@ location: 'Barcelona, España|Barcelona, Spain',
 description: 'Desarrollo de proyecto.|Project development.',
 achievements: [],
 category: 'shows',
-image: 'https://drive.google.com/thumbnail?id=1b5xz71FEH7mPG-AtvyxeQrISClJvCsl4&sz=w1000'
+image: 'images/forum-barcelona-2004.webp'
 },
 {
 id: 'real-madrid-2002',
@@ -549,7 +612,7 @@ location: 'Madrid, España|Madrid, Spain',
 description: 'Desarrollo de proyecto.|Project development.',
 achievements: [],
 category: 'shows',
-image: 'https://www.allsportsmedia.es/wp-content/uploads/2020/09/experiencia-03c.jpg'
+image: 'images/logo-real-madrid-2002.webp'
 },
 
 // --- CENTROS COMERCIALES · MALLS ---
@@ -561,7 +624,7 @@ location: 'Madrid, España|Madrid, Spain',
 description: 'Desarrollo de diseño.|Design development.',
 achievements: [],
 category: 'malls',
-image: 'https://www.l35.com/default/imagenes/2017/04/8050_es-islazul-5813.sw1440.sh810.ct1.jpg'
+image: 'images/islazul.webp'
 },
 {
 id: 'mn4',
@@ -571,7 +634,7 @@ location: 'Alfafar, España|Alfafar, Spain',
 description: 'Desarrollo escenográfico.|Scenographic development.',
 achievements: [],
 category: 'malls',
-image: 'https://e00-expansion.uecdn.es/assets/multimedia/imagenes/2016/05/16/14633521170346.jpg'
+image: 'images/mn4.webp'
 },
 
 // --- TEMATIZACIÓN · THEMING ---
@@ -583,7 +646,7 @@ location: "Lisboa, Portugal|Lisbon, Portugal",
 description: "Diseño, producción y desarrollo gráfico y escenográfico.|Graphic and scenographic design and development.",
 achievements: [],
 category: "theming",
-image: "https://i0.wp.com/chmagazine.pt/wp-content/uploads/2016/08/kidzania2016-005.jpg",
+image: "images/kidzania.webp",
 links: [
 {
 label: "Echa un vistazo|Take a look",
@@ -600,7 +663,7 @@ location: "Sevilla, España|Seville, Spain",
 description: "Proyecto y desarrollo escenográfico.|Scenographic project and development.",
 achievements: [],
 category: "theming",
-image: "https://raw.githubusercontent.com/manolorecio/Manolo-Recio-Portfolio/main/images/isla-magica-rides.png",
+image: "images/isla-magica-rides.webp",
 links: [
 {
 label: "Echa un vistazo|Take a look",
@@ -617,7 +680,7 @@ location: "Port Aventura, España|Port Aventura Theme Park, Spain",
 description: "Diseño y desarrollo escenográfico.|Scenographic design and development.",
 achievements: [],
 category: "theming",
-image: "https://y.cdrst.com/foto/hotel-sf/58cf9af/granderesp/foto-hotel-58cef05.jpg",
+image: "images/portaventura-hotel-caribe-resort.webp",
 links: [
 {
 label: "Galería Google Maps|Google Maps Gallery",
@@ -634,7 +697,7 @@ location: "España|Spain",
 description: "Diseño escenográfico, desarrollo y producción de montaña de roca artificial de 6.000 m².|Scenographic design and development of a 6,000 sqm artificial rock mountain.",
 achievements: [],
 category: "theming",
-image: "https://media.coaster.cloud/attractions/Qx/VQ/QxVQASkSGFnJjKgeCZaHju.jpg?class=large",
+image: "images/warner-bros-park-rio-bravo.webp",
 links: [
 {
 label: "Echa un vistazo|Take a look",
@@ -651,7 +714,7 @@ location: "Teruel, España|Teruel, Spain",
 description: "Desarrollo escenográfico.|Scenographic development.",
 achievements: [],
 category: "theming",
-image: "https://cdn.atrapalo.com/o/event/14158/413042.jpg?auto=avif&width=1280&quality=75",
+image: "images/dinopolis-trex.webp",
 links: [
 {
 label: "Echa un vistazo|Take a look",
@@ -670,7 +733,7 @@ location: "FIBES · Sevilla, España|FIBES · Seville, Spain",
 description: "Diseño y producción gráfica, Artefinalización y Revisión y verificación de AAFF de los stands.|Graphic design and production, final artwork, and review and verification of final artwork for the stands.",
 achievements: [],
 category: "fairs",
-image: "https://www.nisesevilla.com/wp-content/uploads/2025/12/44_.jpg",
+image: "images/nise-2025.webp",
 links: [
 {
 label: "Vídeo resumen del congreso|Video overview of the conference",
@@ -687,7 +750,7 @@ location: "Granada, España|Granada, Spain",
 description: "Diseño y Producción gráfica, Artes finales y Publicaciones para RRSS · Maquetación y producción del Libro de Actas de la segunda y tercera edición del congreso.|Graphic Design and Production, Final Artwork, and Social Media posts · Layout and production of the Conference Proceedings for the second and third editions.",
 achievements: [],
 category: "fairs",
-image: "https://drive.google.com/thumbnail?id=1yR34rI1_eBQ91MFWJSxS8OpCYBhoFNSV&sz=w1000",
+image: "images/3ciienad-2025.webp",
 links: [
 {
 label: "Galería de fotografías|Photo gallery",
@@ -704,7 +767,7 @@ location: 'Málaga, España|Malaga, Spain',
 description: 'Producción gráfica.|Graphic production.',
 achievements: [],
 category: 'fairs',
-image: 'https://segurosnews.com/wp-content/uploads/2020/01/santaluc%C3%ADa.jpeg'
+image: 'images/santalucia.webp'
 },
 {
 id: 'santalucia-2019',
@@ -714,7 +777,7 @@ location: 'Palma de Mallorca, España|Palma de Mallorca, Spain',
 description: 'Producción gráfica.|Graphic production.',
 achievements: [],
 category: 'fairs',
-image: 'https://aico.es/wp-content/uploads/2021/10/2-SantaLucia_aico.jpg'
+image: 'images/santalucia-2019.webp'
 },
 {
 id: "foro-global-2019",
@@ -724,7 +787,7 @@ location: "FIBES · Sevilla, España|FIBES · Seville, Spain",
 description: "Producción gráfica.|Graphic production.",
 achievements: [],
 category: "fairs",
-image: "https://drive.google.com/thumbnail?id=199z6aewg2FFItZQ27C2O9VQgmBLWPpz9&sz=w1000",
+image: "images/foro-fibes.webp",
 links: [
 {
 label: "Vídeo resumen del Foro|Video overview of the Forum",
@@ -741,7 +804,7 @@ location: "Sevilla, España|Seville, Spain",
 description: "Propuesta a concurso ★, diseño, desarrollo y producción de Stands e Hito publicitario exterior.|Competition proposal ★, design, development and production of Stands and outdoor advertising landmark.",
 achievements: [],
 category: "fairs",
-image: "https://www.mimmo.es/wp-content/uploads/2018/12/1.jpg",
+image: "images/sicab.webp",
 links: [
 {
 label: "Método STAR|STAR Method",
@@ -758,7 +821,7 @@ location: 'Sevilla, España|Seville, Spain',
 description: 'Producción CGI para background de escenario.|CGI production for stage background.',
 achievements: [],
 category: 'fairs',
-image: 'https://www.brand.airbus.com/sites/g/files/jlcbta121/files/styles/w900/public/2021-06/logo_blue.webp?itok=uP2-uqIp'
+image: 'images/airbus.webp'
 },
 {
 id: "andalucia-sabor",
@@ -768,7 +831,7 @@ location: "FIBES · Sevilla, España|FIBES · Seville, Spain",
 description: "Diseño, desarrollo y producción de corpóreos de la mascota para señalizar los espacios del Congreso.|Design, development, and production of physical representations of the mascot to mark the spaces at the Conference.",
 achievements: [],
 category: "fairs",
-image: "https://drive.google.com/thumbnail?id=1LcJ3JCSyBuv-svH32k8jxNpzfZy9mbYv&sz=w1000",
+image: "images/forky.webp",
 links: [
 {
 label: "Método STAR|STAR Method",
@@ -785,7 +848,7 @@ location: 'Madrid, España|Madrid, Spain',
 description: 'Desarrollo escenográfico.|Scenographic development.',
 achievements: ['FITUR · Mejor Stand empresarial 2016|FITUR · Best Corporate Stand 2016', 'FITUR · Mejor Stand empresarial 2007|FITUR · Best Corporate Stand 2007'],
 category: 'fairs',
-image: 'https://mapaymochila.es/wp-content/uploads/2016/01/mapaymochila_FITUR_transmediterranea.jpg'
+image: 'images/stand-trasmediterranea-fitur.webp'
 },
 {
 id: 'acciona-stands',
@@ -795,7 +858,7 @@ location: 'Internacional|International',
 description: 'Diseño y desarrollo escenográfico.|Scenographic design and development.',
 achievements: [],
 category: 'fairs',
-image: 'https://www.acciona.com/content/dam/noticias/imagenes/logo-acciona.jpg'
+image: 'images/logo-acciona.webp'
 },
 {
 id: 'feria-libro-sevilla',
@@ -805,7 +868,7 @@ location: 'Sevilla, España|Seville, Spain',
 description: 'Diseño y desarrollo escenográfico · Desarrollo de las Casetas de los exhibidores: En 2010 se introdujeron unas nuevas casetas modulares. Sus principales mejoras incluyeron la integración urbana en Plaza Nueva, materiales más robustos para mayor seguridad y protección climática, y un sistema ergonómico de contrapesos verticales que facilitaba enormemente la apertura y cierre manual de los portalones sin esfuerzo. Además, optimizaron la logística de montaje y el espacio interno para la exposición de libros.|Scenographic design and development · Development of exhibitor booths: In 2010, new modular booths were introduced. Their main improvements included urban integration in Plaza Nueva, more robust materials for greater safety and weather protection, and an ergonomic system of vertical counterweights that greatly facilitated the manual opening and closing of the gates without effort. In addition, assembly logistics and internal space for book displays were optimized.',
 achievements: [],
 category: 'fairs',
-image: 'https://sevillabuenasnoticias.com/wp-content/uploads/2019/04/Feria-del-libro-01.jpg'
+image: 'images/feria-del-libro-sevilla.webp'
 },
 
 // --- EVENTOS · EVENTS ---
@@ -819,7 +882,7 @@ achievements: [
 "Eventoplus 2018 · Silver Medal"
 ],
 category: "events",
-image: "https://ingevents.es/wp-content/uploads/2022/03/pinta-tu-murillo-presentacion-2.jpg",
+image: "images/pinta-tu-murillo-presentacion-2.webp",
 links: [
 {
 label: "Método STAR|STAR method",
@@ -841,7 +904,7 @@ location: "Sevilla, España|Seville, Spain",
 description: "Diseño escenográfico y producción gráfica.|Scenographic design and graphic production.",
 achievements: [],
 category: "events",
-image: "https://drive.google.com/thumbnail?id=1QjD7MrrFqJDwEfSA46TyZa2whk8j_28-&sz=w1000",
+image: "images/seff-teatro.webp",
 links: [
 {
 label: "Galería SEFF|SEFF Gallery",
@@ -858,7 +921,7 @@ location: 'Madrid, España|Madrid, Spain',
 description: 'Producción multimedia.|Multimedia production.',
 achievements: [],
 category: 'events',
-image: 'https://www.adama.com/central-america/sites/adama_central_america/files/styles/hero_desktop/public/2021-11/Copia%20de%20Adama_Logo_Wordmark-01.png?h=b6236d98&itok=_M9cPzMm'
+image: 'images/adama-logo.webp'
 },
 {
 id: "uefa-2014",
@@ -868,7 +931,7 @@ location: "Ginebra, Suiza|Geneva, Switzerland",
 description: "Diseño y Producción del Balón Ceremonial para la Gala de anuncio de las sedes de la UEFA EURO 2020.|Design and Production of the Ceremonial Ball for the UEFA EURO 2020 Venue Announcement Gala.",
 achievements: [],
 category: "events",
-image: "https://drive.google.com/thumbnail?id=18vnaSWmvi8vxUF92FXQgy1KTnPdk1aj1&sz=w1000",
+image: "images/uefa-balones.webp",
 links: [
 {
 label: "Método STAR|STAR Method",
@@ -885,7 +948,7 @@ location: 'España|Spain',
 description: 'Desarrollo de diseño.|Design development.',
 achievements: [],
 category: 'events',
-image: 'https://valenciaplaza.com/public/Image/2017/7/bestinver_forCrop.jpg'
+image: 'images/bestinver.webp'
 },
 {
 id: 'desfile-nacional-2010',
@@ -895,7 +958,7 @@ location: 'Madrid, España|Madrid, Spain',
 description: 'Desarrollo de diseño.|Design development.',
 achievements: [],
 category: 'events',
-image: 'https://drive.google.com/thumbnail?id=1_o9IwHoMt5rS8tVzMFGaiIAOPLihHb8a&sz=w1000'
+image: 'images/dia-fiesta-nacional-2010.webp'
 },
 
 // --- PRODUCCIÓN AV · AV PRODUCTION ---
@@ -907,7 +970,7 @@ location: "Sevilla, España|Seville, Spain",
 description: "Edición y Correalización.|Editing and Co-direction.",
 achievements: [],
 category: "audiovisual",
-image: "https://aammaudiovisual.com/wp-content/uploads/2016/07/07-La-piel-l%C3%ADquida-768x484.jpg",
+image: "images/la-piel-liquida.webp",
 links: [
 {
 label: "Play|",
@@ -926,7 +989,7 @@ achievements: [
 "Premio ATEA 2001 · Mejor programa cultural|ATEA Award 2001 · Best cultural program"
 ],
 category: "audiovisual",
-image: "https://drive.google.com/thumbnail?id=1_nZ6pF2ef3MYxzPfkMaM8FRY4q8LkPyP&sz=w1000",
+image: "images/luces-y-sombras.webp",
 links: [
 {
 label: "Una pieza de un capítulo del documental|A clip from an episode of the show",
@@ -959,7 +1022,7 @@ Together with Tannhauser Estudio, I was co-designer and developer of the exhibit
 The logo captures the essence of the Nao Victoria in a subtle and stylized way, using a circle with geometric lines that represents the stylized bow of the Nao Victoria. The diagonal and vertical lines simulate the structure of the figurehead, the front part of the ship that protrudes from the stem.`,
 achievements: [],
 category: 'branding',
-image: 'https://drive.google.com/thumbnail?id=1W25nxrd4ntdL2toAbMxJ3qo7GWd4ypOO&sz=w1000'
+image: 'images/espacio-vuelta-mundo-logo.webp'
 },
 {
 id: 'the-lightmaster',
@@ -995,7 +1058,7 @@ The inverted “A” represents the installer, highlighting skill and precision 
 The shape resulting from the combination of the letters evokes the image of a spotlight, reinforcing the idea of lighting as the core of the business. The Light Master logo is a design that combines symbolism and functionality. The representation of light and the installer in the main icon clearly communicates the services offered by the company. The blue color reinforces the image of professionalism and trust. The international name “THE LIGHT MASTER” reflects the company\'s experience and global vision.`,
 achievements: [],
 category: 'branding',
-image: 'https://drive.google.com/thumbnail?id=1z1ZC-LpEwPo650r6XqxrxL7UJjtneT0h&sz=w1000'
+image: 'images/the-light-master.webp'
 },
 {
 id: 'cicerone',
@@ -1013,7 +1076,7 @@ CICERONE is a mobile application designed to serve as a guide and assistant for 
 
 The logo, with its distinctive blue circle, unfolds the brand on three levels: 'CICERONE', the comprehensive legal guide; the blue circle, which invites global exploration (anticipating the app's expansion); and 'C1' (C One), a modern, English-speaking abbreviation that suggests that CICERONE is the first and foremost guide for lawyers.`,    achievements: [],
 category: 'branding',
-image: 'https://drive.google.com/thumbnail?id=1F_EO8_Im_fq3SMgkwT-hgc5TMEdXz0oi&sz=w1000'
+image: 'images/cicerone.webp'
 },
 {
 id: 'dehesa',
@@ -1041,7 +1104,7 @@ Its vertical layout evokes growth and progression, synthesizing the shape of the
 The vibrant and dynamic colors convey the passion and spirit of the team behind it. The logo is a visual invitation to a gastronomic experience. Its design, which captures tradition and envelops it in this contemporary aesthetic, reflects the essence of the restaurant: we honor the past while embracing evolution.`,
 achievements: [],
 category: 'branding',
-image: 'https://drive.google.com/thumbnail?id=1ZuC_HcPqDrx3H7DgESxFrPOE0gmANbDB&sz=w1000',
+image: 'images/dehesa-jamon.webp',
 links: [
 {
 label: "Carta Digital · La Dehesa del Jamón|Digital Menu · La Dehesa del Jamón",
@@ -1052,9 +1115,9 @@ type: "link"
 },
 {
 id: 'lexpire',
-title: `Lexpire:\nuna app que calcula los plazos judiciales
+title: `Lexpire:\nUna app que calcula los plazos judiciales
 
-|Lexpire:\nan app that calculates court deadlines`,
+|Lexpire:\nAn app that calculates court deadlines`,
 date: '2016',
 location: 'Sevilla, España|Seville, Spain',
 description: `Lexpire, de Legal Innovation, es la app gratuita que simplifica el cálculo de plazos legales. 
@@ -1074,12 +1137,11 @@ The logo, like a red notepad, uses color as a warning and communicates organizat
 In short, the Lexpire logo is a visual representation of a tool designed to help legal professionals manage their deadlines effectively, avoiding errors and delays.`,
 achievements: [],
 category: 'branding',
-image: 'https://drive.google.com/thumbnail?id=15gbxtaaPf_Ls8eoVZ3jzWYW7WZkMdaLJ&sz=w1000'
+image: 'images/lexpire.webp'
 },
 {
 id: 'graficut',
-title: `Graficut:    
-Un revamp del diseño de marca
+title: `Graficut:\nUn revamp del diseño de marca
 
 |Graficut:\nA revamp of the brand design`,
 date: '2016',
@@ -1093,15 +1155,13 @@ Su logotipo, una evolución moderna del diseño anterior, transmite profesionali
 Its logo, a modern evolution of the previous design, conveys professionalism and efficiency. The clean typography and minimalism reflect the precision of its work, while the subtle emphasis on the letter "A" symbolizes the attention to detail and precision of its work.`,
 achievements: [],
 category: 'branding',
-image: 'https://drive.google.com/thumbnail?id=1ntNidzB0E8E_U3dGQ4ZAf5e6NxrOAs9K&sz=w1000'
+image: 'images/graficut.webp'
 },
 {
 id: "con-arte",
-title:`CON ARTE · Bar & Restaurante:     
-El rebranding de un restaurante desde el arte
+title:`CON ARTE · Bar & Restaurante:\nEl rebranding de un restaurante desde el arte
 
-|CON ARTE · Bar & Restaurant:     
-The rebranding of a restaurant through art.`,
+|CON ARTE · Bar & Restaurant:\nThe rebranding of a restaurant through art.`,
 date: "2023",
 location: "Sevilla, España|Seville, Spain",
 description: `CON ARTE BAR & RESTAURANTE emprende un rebranding estratégico que proyecta su sólida trayectoria desde 2004, fusionando la esencia de la tradición con un espíritu de vanguardia.
@@ -1129,12 +1189,11 @@ This \"labyrinthine path\" intrinsic to the design symbolizes the daily effort a
 The design of the stroke is not merely aesthetic; it is a statement of intent. It expresses the care and authenticity with which every detail is crafted at CON ARTE. It reflects how culinary tradition merges with the most avant-garde demands, always within the canons of \"real homemade meals.\" This philosophy is hallmarked in all our creations, from breakfast to appetizers, lunch, and after-dinner drinks, as well as in the carefully selected beers, wines, and spirits, emphasizing the versatility of our offering for any time of day or night.`,
 achievements: [],
 category: "branding",
-image: "https://drive.google.com/thumbnail?id=12e8UHP16Fh8GdN4WyyDqJFqQecNVNJzJ&sz=w1000"
+image: "images/con-arte.webp"
 },
 {
 id: "legal-innovation-y-submarcas-plataforma-tecnol-gica-para-profesionales-del-derecho-2016",
-title: `LEGAL INNOVATION y SUBMARCAS:  
-Plataforma tecnológica para profesionales del derecho
+title: `LEGAL INNOVATION y SUBMARCAS:\nPlataforma tecnológica para profesionales del derecho
 
 |LEGAL INNOVATION and SUB-BRANDS:\nTechnological platform for legal professionals`,
 date: "2016",
@@ -1142,7 +1201,7 @@ location: "Sevilla, España|Seville, Spain",
 description: "DISEÑO de MARCA, WEB y WEBMAIL|BRAND, WEB and WEBMAIL DESIGN",
 achievements: [],
 category: "branding",
-image: "https://drive.google.com/thumbnail?id=1uL5DvhwvQ4tYNtSrT4F-wsotHjpGMDNn&sz=w1000"
+image: "images/legal-innovation.webp"
 },
 ];
 
@@ -1202,7 +1261,7 @@ category: 'DISEÑO E INGENIERÍA CREATIVA|DESIGN & CREATIVE ENGINEERING',
 items: [
 'Senior Graphic & Visual Designer & Scenography Developer (+25 años)|Senior Graphic & Visual Designer & Scenography Developer (+25 years)',
 'Diseño, desarrollo y producción gráfica, visual y escenográfica de alto impacto|High-impact graphic, visual and scenographic design, development and production',
-'Dominio experto de herramientas vectoriales y editoriales:\nADOBE CC, CorelDRAW, MS Office|Expert mastery of vector and editorial tools:\nADOBE CC, CorelDRAW, MS Office',
+'Dominio experto de herramientas vectoriales y editoriales:\nAdobe Suite, CorelDRAW, MS Office|Expert mastery of vector and editorial tools:\nAdobe Suite, CorelDRAW, MS Office',
 'Consultoría técnica y creativa para proyectos internacionales (Acciona Cultura, Sngular)|Technical and creative consultancy for international projects (Acciona Cultura, Sngular)'
 ] 
 },
@@ -1212,15 +1271,15 @@ items: [
 'Google AI Studio:\nRecurso de apoyo para el desarrollo de apps de optimización creativa, procesos y producción|Google AI Studio:\nSupport resource for the development of creative optimization apps, processes, and production',
 'Desarrollo de micro-herramientas in-house|In-house micro-tools development',
 'Producción de Artes finales (AAFF) de gran formato y gestión de color compleja|Large-format Final Artworks production (AAFF) and complex color management',
-'Gestión de contenidos y soluciones digitales:\nBrightSign, IntuiFace, SCALA, SAP|Content management and digital solutions:\nBrightSign, IntuiFace, SCALA, SAP'
+'Gestión de contenidos y soluciones digitales:\nBrightSign, IntuiFace, Scala Designer, SAP 3D Visual Enterprise Author|Content management and digital solutions:\nBrightSign, IntuiFace, Scala Designer, SAP 3D Visual Enterprise Author'
 ] 
 },
 { 
 category: '3D, RENDER & AUDIOVISUAL',
 items: [
-'ArchViz / RTViz:\nRenderizado en tiempo real (D5 Render, Twinmotion, Corona, ANIMA)|ArchViz / RTViz:\nReal-time rendering (D5 Render, Twinmotion, Corona, ANIMA)',
-'Modelado y Animación 3D:\nLightwave3D, Blender, SketchUp, Unreal Engine, Substance, Poser, iClone, KeyShot|3D Modeling & Animation:\nLightwave3D, Blender, SketchUp, Unreal Engine, Substance, Poser, iClone, KeyShot',
-'Postproducción AV y Edición:\nVegas Pro Suite, ADOBE|AV Post-production & Editing:\nVegas Pro Suite, ADOBE',
+'ArchViz / RTViz:\nRenderizado en tiempo real (D5 Render, Twinmotion, Corona, Chaos Anima)|ArchViz / RTViz:\nReal-time rendering (D5 Render, Twinmotion, Corona, Chaos Anima)',
+'Modelado y Animación 3D:\nLightwave3D, Blender, SketchUp, Poser, iClone, KeyShot|3D Modeling & Animation:\nLightwave3D, Blender, SketchUp, Poser, iClone, KeyShot',
+'Postproducción AV y Edición:\nVegas Pro Suite, Adobe Suite|AV Post-production & Editing:\nVegas Pro Suite, Adobe Suite',
 'Visualización avanzada y cartografía:\nGlobal Mapper, Filter Forge, Next Limit|Advanced visualization and cartography:\nGlobal Mapper, Filter Forge, Next Limit'
 ] 
 },
@@ -1257,26 +1316,140 @@ export const COUNTRIES: string[] = [
 'Turquía | Türkiye'
 ];
 
-export const AWARDS: Award[] = [
-{ title: "BIE · Medalla de Oro | BIE · Gold Medal", subtitle: "Pabellón de Omán - Expo Zaragoza 2008 | Oman Pavilion - Expo Zaragoza 2008" },
-{ title: "BIE · Medalla de Oro | BIE · Gold Medal", subtitle: "Pabellón de Turquía - Expo Aichi 2005 | Türkiye Pavilion - Expo Aichi 2005" },
-{ title: "BIE · Medalla de Plata | BIE · Silver Medal", subtitle: "Pabellón de Rusia - Expo Yeosu 2012 | Russia Pavilion - Expo Yeosu 2012" },
-{ title: "BIE · Medalla de Plata | BIE · Silver Medal", subtitle: "Pabellón de Rusia - Expo Zaragoza 2008 | Russia Pavilion - Expo Zaragoza 2008" },
-{ title: "Red Dot Design Award | Red Dot Design Award", subtitle: "Wu Kingdom Helv Relic (2014) | Wu Kingdom Helv Relic (2014)" },
-{ title: "iF Gold Award | iF Gold Award", subtitle: "Wu Kingdom Helv Relic (2015) | Wu Kingdom Helv Relic (2015)" },
-{ title: "European Museum Forum · Mejor Museo | EMYA · European Museum of the Year", subtitle: "MARQ. Museo Arqueológico de Alicante (2004) | MARQ. Archaeological Museum of Alicante" },
-{ title: "EMYA · Kenneth Hudson Award | EMYA · Kenneth Hudson Award", subtitle: "Boris Yeltsin Presidential Center (2017) | Boris Yeltsin Presidential Center (2017)" },
-{ title: "EMYA · Mención Especial | EMYA · Special Commendation", subtitle: "The House of European History (2019) | The House of European History (2019)" },
-{ title: "New York Festivals · Silver | New York Festivals · Silver", subtitle: "Wu Kingdom Helv Relic (2015) | Wu Kingdom Helv Relic (2015)" },
-{ title: "Art Directors Club (ADC) | Art Directors Club (ADC)", subtitle: "Wu Kingdom Helv Relic · Spatial Communication | Wu Kingdom Helv Relic · Spatial Communication" },
-{ title: "Exhibitor Magazine · Premio del Público | Exhibitor Magazine · People's Choice", subtitle: "Pabellón de Rusia - Expo Yeosu 2012 | Russia Pavilion - Expo Yeosu 2012" },
-{ title: "Exhibitor Magazine · Mención de Honor | Exhibitor Magazine · Honorable Mention", subtitle: "Pabellón de EAU - Expo Astaná 2017 | UAE Pavilion - Expo Astana 2017" },
-{ title: "EuBea · Silver Medal | EuBea · Silver Medal", subtitle: "Espectáculos de Navidad Sevilla (2016) | Seville Christmas Shows (2016)" },
-{ title: "EuBea · Silver Medal | EuBea · Silver Medal", subtitle: "Espectáculos de Navidad Sevilla (2013) | Seville Christmas Shows (2013)" },
-{ title: "Eventoplus · Silver Medal | Eventoplus · Silver Medal", subtitle: "Pinta tu Murillo (2018) | Pinta tu Murillo (2018)" },
-{ title: "Eventoplus · Silver Medal | Eventoplus · Silver Medal", subtitle: "Espectáculos de Navidad Sevilla (2013) | Seville Christmas Shows (2013)" },
-{ title: "FITUR · Mejor Stand Empresarial | FITUR · Best Corporate Stand", subtitle: "Stands Trasmediterránea (2016) | Trasmediterránea Stands (2016)" },
-{ title: "FITUR · Mejor Stand Empresarial | FITUR · Best Corporate Stand", subtitle: "Stands Trasmediterránea (2007) | Trasmediterránea Stands (2007)" },
-{ title: "EXPO AICHI · Nature\'s Wisdom Award | EXPO AICHI · Nature\'s Wisdom Award", subtitle: "Medalla de Oro - Pabellón Turquía | Gold Medal - Türkiye Pavilion" },
-{ title: "Premio ATEA · Mejor Programa Cultural | ATEA Award · Best Cultural Program", subtitle: "Luces y Sombras: Museos de Andalucía | Luces y Sombras: Andalusia Museums" }
+export const AWARDS_ORIGINAL: Award[] = [
+  { 
+    title: "BIE · Medalla de Oro | BIE · Gold Medal", 
+    subtitle: "Pabellón de Omán - Expo Zaragoza 2008 | Oman Pavilion - Expo Zaragoza 2008",
+    projectId: 'oman-zaragoza-2008' // Encontrado
+  },
+  { 
+    title: "BIE · Medalla de Oro | BIE · Gold Medal", 
+    subtitle: "Pabellón de Turquía - Expo Aichi 2005 | Türkiye Pavilion - Expo Aichi 2005",
+    projectId: 'türkiye-aichi-2005' // Encontrado (Ojo con la T mayúscula)
+  },
+  { 
+    title: "BIE · Medalla de Plata | BIE · Silver Medal", 
+    subtitle: "Pabellón de Rusia - Expo Yeosu 2012 | Russia Pavilion - Expo Yeosu 2012",
+    projectId: 'russia-yeosu-2012' // Encontrado
+  },
+  { 
+    title: "BIE · Medalla de Plata | BIE · Silver Medal", 
+    subtitle: "Pabellón de Rusia - Expo Zaragoza 2008 | Russia Pavilion - Expo Zaragoza 2008",
+    projectId: 'russia-zaragoza-2008' // Encontrado
+  },
+  { 
+    title: "Red Dot Design Award | Red Dot Design Award", 
+    subtitle: "Wu Kingdom Helv Relic | Wu Kingdom Helv Relic",
+    projectId: 'wu-kingdom-2014' // Encontrado
+  },
+  { 
+    title: "iF Gold Award | iF Gold Award", 
+    subtitle: "Wu Kingdom Helv Relic | Wu Kingdom Helv Relic",
+    projectId: 'wu-kingdom-2014' // Enlazado al mismo proyecto
+  },
+  { 
+    title: "European Museum Forum · Mejor Museo | EMYA · European Museum of the Year", 
+    subtitle: "MARQ. Museo Arqueológico de Alicante | MARQ. Archaeological Museum of Alicante",
+    projectId: 'marq-2002' // Encontrado
+  },
+  { 
+    title: "EMYA · Kenneth Hudson Award | EMYA · Kenneth Hudson Award", 
+    subtitle: "Boris Yeltsin Presidential Center | Boris Yeltsin Presidential Center",
+    projectId: 'yeltsin-2015' // Encontrado
+  },
+  { 
+    title: "EMYA · Mención Especial | EMYA · Special Commendation", 
+    subtitle: "The House of European History | The House of European History",
+    projectId: 'european-history-2017' // Encontrado
+  },
+  { 
+    title: "New York Festivals · Silver | New York Festivals · Silver", 
+    subtitle: "Wu Kingdom Helv Relic | Wu Kingdom Helv Relic",
+    projectId: 'wu-kingdom-2014' // Enlazado al mismo proyecto
+  },
+  { 
+    title: "Art Directors Club (ADC) | Art Directors Club (ADC)", 
+    subtitle: "Wu Kingdom Helv Relic · Spatial Communication | Wu Kingdom Helv Relic · Spatial Communication",
+    projectId: 'wu-kingdom-2014' // Enlazado al mismo proyecto
+  },
+  { 
+    title: "Exhibitor Magazine · Premio del Público | Exhibitor Magazine · People's Choice", 
+    subtitle: "Pabellón de Rusia - Expo Yeosu 2012 | Russia Pavilion - Expo Yeosu 2012",
+    projectId: 'russia-yeosu-2012' // Encontrado
+  },
+  { 
+    title: "Exhibitor Magazine · Mención de Honor | Exhibitor Magazine · Honorable Mention", 
+    subtitle: "Pabellón de EAU - Expo Astaná 2017 | UAE Pavilion - Expo Astana 2017",
+    projectId: 'uae-astana-2017' // Encontrado
+  },
+  { 
+    title: "EuBea · Silver Medal | EuBea · Silver Medal", 
+    subtitle: "Espectáculos de Navidad Sevilla | Seville Christmas Shows",
+    projectId: 'navidad-sevilla-2010' // Encontrado (rango 2010-16)
+  },
+  { 
+    title: "EuBea · Silver Medal | EuBea · Silver Medal", 
+    subtitle: "Espectáculos de Navidad Sevilla | Seville Christmas Shows",
+    projectId: 'navidad-sevilla-2010' // Encontrado
+  },
+  { 
+    title: "Eventoplus · Silver Medal | Eventoplus · Silver Medal", 
+    subtitle: "Pinta tu Murillo | Pinta tu Murillo",
+    projectId: 'pinta-murillo-2018' // Encontrado
+  },
+  { 
+    title: "Eventoplus · Silver Medal | Eventoplus · Silver Medal", 
+    subtitle: "Espectáculos de Navidad Sevilla | Seville Christmas Shows",
+    projectId: 'navidad-sevilla-2010' // Encontrado
+  },
+  { 
+    title: "FITUR · Mejor Stand Empresarial | FITUR · Best Corporate Stand", 
+    subtitle: "Stands Trasmediterránea | Trasmediterránea Stands",
+    projectId: 'trasmediterranea-fitur' // Encontrado
+  },
+  { 
+    title: "FITUR · Mejor Stand Empresarial | FITUR · Best Corporate Stand", 
+    subtitle: "Stands Trasmediterránea | Trasmediterránea Stands",
+    projectId: 'trasmediterranea-fitur' // Encontrado
+  },
+  { 
+    title: "EXPO AICHI · Nature\'s Wisdom Award | EXPO AICHI · Nature\'s Wisdom Award", 
+    subtitle: "Medalla de Oro - Pabellón Turquía | Gold Medal - Türkiye Pavilion",
+    projectId: 'türkiye-aichi-2005' // Encontrado
+  },
+  { 
+    title: "Premio ATEA · Mejor Programa Cultural | ATEA Award · Best Cultural Program", 
+    subtitle: "Luces y Sombras: Museos de Andalucía | Luces y Sombras: Andalusia Museums",
+    projectId: 'luces-sombras-1999' // Encontrado
+  }
 ];
+
+// 3. Exportación de Proyectos (Mapeo de Alta Fidelidad)
+export const PROJECTS: Project[] = PROJECTS_ORIGINAL.map(project => ({
+  ...project,
+  // Miniatura para el grid: forzamos 400px para velocidad de carga
+  image: toCdn(project.image, 400),
+  
+  // imageSet: El navegador elegirá la mejor opción (300w, 600w o 1000w)
+  imageSet: project.imageSet?.map(img => {
+    // Dividimos el string por espacios: ["url", "600w"]
+    const parts = img.trim().split(/\s+/);
+    
+    if (parts.length === 2) {
+      const imgUrl = parts[0];      // La URL pura
+      const descriptor = parts[1];  // El "600w"
+      const wValue = parseInt(descriptor, 10); // El número 600
+      
+      // Construimos: "url-optimizada-cdn 600w"
+      return `${toCdn(imgUrl, wValue)} ${descriptor}`;
+    }
+    
+    // Si no tiene formato de set, lo procesamos como imagen simple
+    return toCdn(img);
+  })
+}));
+
+// 4. Exportación de Premios (Sin BRANDS para evitar errores de referencia)
+export const AWARDS: Award[] = AWARDS_ORIGINAL.map(award => ({
+  ...award
+}));
