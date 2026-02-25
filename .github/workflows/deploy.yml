@@ -2,25 +2,33 @@ name: Deploy Portfolio
 on:
   push:
     branches: [ main ]
+
+# Definimos los permisos a nivel global para mayor seguridad
+permissions:
+  contents: write    # Necesario para que la acción de JamesIves pueda escribir en la rama gh-pages
+  pages: write       # Permiso explícito para interactuar con GitHub Pages
+  id-token: write    # Necesario para la autenticación moderna de OIDC
+
 jobs:
   build-and-deploy:
-    permissions:
-      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
+
       - name: Install and Build
         run: |
           npm install
           npm run build
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist
-          clean: true # Esto elimina automáticamente los archivos viejos en el servidor
+          clean: true
