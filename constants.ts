@@ -1243,7 +1243,9 @@ export const SKILLS: Skill[] = [
 category: 'ESTUDIOS Y CERTIFICACIONES|EDUCATION AND CERTIFICATIONS',
 items: [
 'Técnico superior en Artes plásticas y diseño en Gráfica publicitaria · EASD Sevilla|Senior technician in Plastic arts and Graphic design · EASD Seville',
-'Certificación GOOGLE UX Design Professional Certificate|GOOGLE UX Design Professional Certificate',
+'Certificación GOOGLE UX Design Professional|GOOGLE UX Design Professional Certificate',
+'Certificación GOOGLE AI Professional|GOOGLE AI Professional Certificate',
+'Certificado IBM SkillsBuild: Usos profesionales de la IA GENERATIVA | IBM SkillsBuild Certificate: Professional uses of GENERATIVE AI',
 'Especialización UX/UI e Interacción Digital · FUNDAE|UX/UI and Digital Interaction Specialization · FUNDAE'
 ] 
 },
