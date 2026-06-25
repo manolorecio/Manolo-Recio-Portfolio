@@ -69,8 +69,10 @@ Custom architecture designed to ensure a premium user experience and ultra-fast 
 ---
 <div align="center">
   <br />
-  <img src="../main/portfolio-logo-claim.webp" width="300" alt="Logo Manolo Recio" />
-  </div>
+  <a href="https://manolorecio.github.io/Manolo-Recio-Portfolio/">
+    <img src="../main/portfolio-logo-claim.webp" width="300" alt="Logo Manolo Recio" />
+  </a>
+</div>
 <br />
 <br />
 
@@ -151,5 +153,7 @@ Publicista, Diseñador, Productor e Ilustrador con más de 25 años de experienc
 ---
 <div align="center">
   <br />
-  <img src="../main/portfolio-logo-claim.webp" width="300" alt="Logo Manolo Recio" />
-  </div>
+  <a href="https://manolorecio.github.io/Manolo-Recio-Portfolio/">
+    <img src="../main/portfolio-logo-claim.webp" width="300" alt="Logo Manolo Recio" />
+  </a>
+</div>
