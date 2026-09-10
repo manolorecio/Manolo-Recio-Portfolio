@@ -82,8 +82,9 @@
     </script>
 
     <script src="https://cdn.tailwindcss.com" defer></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/open-dyslexic.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -92,26 +93,48 @@
 
         /* Accessibility Classes */
         .high-contrast {
-            filter: contrast(1.5) brightness(1.1);
+            filter: contrast(1.35) brightness(1.05);
+        }
+
+        .high-contrast body,
+        .high-contrast #root {
             background-color: #000 !important;
             color: #fff !important;
         }
         
         .high-contrast * {
-            border-color: #fff !important;
-            color: inherit !important;
+            border-color: rgba(255, 255, 255, 0.4) !important;
         }
 
         .high-contrast button, 
         .high-contrast a {
-            outline: 2px solid #fff !important;
+            outline: 2px solid #97d58e !important;
             outline-offset: 2px !important;
         }
 
-        .dyslexia-font {
-            font-family: 'OpenDyslexic', sans-serif !important;
-            letter-spacing: 0.05em !important;
-            word-spacing: 0.1em !important;
+        .grayscale-mode {
+            filter: grayscale(100%) !important;
+        }
+
+        .grayscale-mode.high-contrast {
+            filter: grayscale(100%) contrast(1.35) brightness(1.05) !important;
+        }
+
+        .dyslexia-font,
+        .dyslexia-font * {
+            font-family: 'Lexend', 'Plus Jakarta Sans', sans-serif !important;
+            letter-spacing: 0.02em !important;
+            word-spacing: 0.05em !important;
+        }
+
+        /* Prevent Accessibility Drawer from scaling with html font size or being overridden */
+        #accessibility-drawer-panel,
+        #accessibility-drawer-panel * {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .dyslexia-font #accessibility-drawer-panel,
+        .dyslexia-font #accessibility-drawer-panel * {
+            font-family: 'Lexend', 'Plus Jakarta Sans', sans-serif !important;
         }
 
         body {
@@ -187,7 +210,7 @@
   }
 }
 </script>
-  <script type="module" crossorigin src="/Manolo-Recio-Portfolio/assets/main-BLw6uCnX.js"></script>
+  <script type="module" crossorigin src="/Manolo-Recio-Portfolio/assets/main-eJ6GP9wt.js"></script>
     <link rel="icon" type="image/x-icon" href="./public/favicon.ico">
     <link rel="icon" type="image/png" href="./public/favicon.png">
     <link rel="shortcut icon" href="./public/favicon.ico">
