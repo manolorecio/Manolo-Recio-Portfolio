@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guardar Contacto - Manolo Recio</title>
+  <style>
+    body {
+      background-color: #053246;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      border: 3px solid #88c973;
+    }
+    h1 { font-size: 1.5rem; margin: 0 0 8px; }
+    p { color: #b8d0dc; font-size: 0.95rem; max-width: 320px; margin-bottom: 24px; }
+    .btn {
+      background-color: #88c973;
+      color: #053246;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <img src="https://githubusercontent.com" alt="Manolo Recio">
+  <h1>Manolo Recio</h1>
+  <p>Si el contacto no se ha abierto solo, pulsa el botón o abre la notificación de descarga de tu navegador.</p>
+  <a id="download-btn" class="btn" href="manolo-recio.vcf" download="Manolo_Recio.vcf">Guardar Contacto</a>
+
+  <script>
+    window.onload = function() {
+      setTimeout(function() {
+        document.getElementById('download-btn').click();
+      }, 400);
+    };
+  </script>
+</body>
+</html>
