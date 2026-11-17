@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guardar Contacto - Manolo Recio</title>
+  <style>
+    body {
+      background-color: #1c2026;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+      box-sizing: border-box;
+    }
+    .avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+      border: 3px solid #d97706;
+      background-color: #1c2026;
+    }
+    h1 {
+      font-size: 1.6rem;
+      margin: 0 0 8px;
+      letter-spacing: -0.02em;
+    }
+    .subtitle {
+      color: #d97706;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 0 0 16px;
+    }
+    p {
+      color: #9ca3af;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      max-width: 320px;
+      margin: 0 0 28px;
+    }
+    .btn {
+      background-color: #d97706;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 15px 32px;
+      border-radius: 9999px;
+      font-size: 1rem;
+      transition: opacity 0.2s ease;
+      box-shadow: 0 4px 14px rgba(217, 119, 6, 0.35);
+    }
+    .btn:active {
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+  <img class="avatar" src="images/manolorecio-vcard-profile-image.png" alt="Manolo Recio">
+  <h1>Manolo Recio</h1>
+  <div class="subtitle">Senior Graphic  &amp; Visual Designer  &amp; Scenic Development  &amp; AI Creative Development</div>
+  <p>Si la ficha de contacto no se ha abierto sola, pulsa el botón o toca la notificación de descarga de tu móvil.</p>
+  <a id="download-btn" class="btn" href="manolo-recio.vcf" download="Manolo_Recio.vcf">Guardar Contacto</a>
+
+  <script>
+    window.onload = function() {
+      setTimeout(function() {
+        document.getElementById('download-btn').click();
+      }, 400);
+    };
+  </script>
+</body>
+</html>
