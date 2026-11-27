@@ -16,7 +16,7 @@ Este proyecto ha sido auditado con **Google Lighthouse (V13)**, alcanzando métr
 This project has been audited with **Google Lighthouse (V13)**, achieving elite-tier performance metrics:
 
 * **Performance:** 97/100 🟢
-* **Speed Index:** 1.8s ⚡
+* **Speed Index:** 0.5s ⚡
 * **LCP (Largest Contentful Paint):** 2.0s 🟢
 * **Best Practices:** 100/100 🟢
 * **SEO:** 100/100 🟢
